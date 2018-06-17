@@ -92,11 +92,17 @@ class Main {
    */
   onReady() {
     console.log("Ready");
-    console.log(this.bot.guilds.size);
-    // load servers
-    this.bot.guilds.forEach(server => {
-      this.createServer(server);
-    });
+    this.bot.editStatus(null, {
+      name: 'ServerView-Electron is running!'
+    })
+    ;
+    // load Dyno alone
+      try {
+        this.createServer(this.bot.guilds.get('203039963636301824'));
+      } catch(err) {
+        this.onError(err)
+      }
+
   }
 
   /**
