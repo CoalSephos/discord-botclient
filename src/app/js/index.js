@@ -1,8 +1,7 @@
 const _ = require('underscore');
 const path = require('path');
 const electron = require('electron');
-const remote = electron.remote;
-const ipcRenderer = electron.ipcRenderer;
+const {ipcRenderer, remote} = electron;
 
 const config = remote.app.config;
 
@@ -12,7 +11,7 @@ main.controller('MainController', ['$scope', MainController]);
 main.controller('TokenController', ['$scope', TokenController]);
 
 function MainController($scope) {
-  $scope.title = "Discord Bot Client";
+  $scope.title = "Dyno Support Client";
   $scope.servers = {};
   $scope.message = "";
   $scope.messages = {};
