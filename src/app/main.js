@@ -258,14 +258,21 @@ class Main {
 
     // format the timestamp for display
     msg.timestamp = moment.unix(msg.timestamp / 1000).format('hh:mm:ss a');
-
-    if (msg.member) {
+    
+      if (message.member) {
       // map role colors as hex
-      msg.author.roles = msg.member.roles.map(roleID => {
+      function sortRoles(roles) {
+        return roles.sort((a, b) => {
+            return b.position - a.position;
+        });
+      }
+      let roles = sortRoles(message.member.roles.map(r => msg.channel.guild.roles.get(r)))
+      roles.filter(r => r.color)[0]
+      msg.author.roles = roles.map(roles => {
         // clone role to so there's no reference overwrites
-        let role = msg.channel.guild.roles.get(roleID);
+        let role = msg.channel.guild.roles.get(roles.id);
         let _role = Object.assign({}, role);
-        let roleColourHex = `#${parseInt(role.color.toString(), 16)}`;
+        let roleColourHex = `#${role.color.toString(16)}`;
         _role.color = roleColourHex === '#000000' ? '#fefefe' : roleColourHex;
         return _role;
       });
@@ -275,14 +282,13 @@ class Main {
 
     // we only need the channel id, and the object contains circular references
     msg.channel = msg.channel.id;
-
     // pick the keys we need and don't return circular references
     msg.author = {
       id: msg.author.id,
       username: msg.author.username,
       discriminator: msg.author.discriminator,
       avatar: msg.author.avatar,
-      roles: msg.author.roles
+      roles: msg.author.roles,
     };
 
     return msg;
