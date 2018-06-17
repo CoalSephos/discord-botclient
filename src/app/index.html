@@ -41,7 +41,7 @@
               <span class="timestamp">
                 {{message.timestamp}}
               </span>
-              <span class="author" data-id="{{message.author.id}}" ng-style="{color: message.author.color}">
+              <span class="author" data-id="{{message.author.id}}" style= "color: {{message.author.color}}">
                 {{message.author.username}}#{{message.author.discriminator}}
               </span>
               <span class="content" ng-bind-html="message.cleanContent"></span>
