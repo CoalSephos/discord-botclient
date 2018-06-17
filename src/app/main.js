@@ -168,13 +168,14 @@ class Main {
    * Create the client window
    */
   createWindow() {
-    this.mainWindow = new BrowserWindow({ width: 1280, height: 720 });
+    this.mainWindow = new BrowserWindow({ width: 1380, height: 800, icon: __dirname + '/dynoRound.ico'});
     this.mainWindow.loadURL('file://' + __dirname + '/index.html');
 
     // Open the DevTools.
     // this.mainWindow.webContents.openDevTools();
 
     this.mainWindow.on('closed', () => {
+      app.quit();
       this.mainWindow = null;
     });
 
