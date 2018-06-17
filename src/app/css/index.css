@@ -11,6 +11,12 @@ ul {
   padding: 0 0.5em;
 }
 
+.center {
+  text-align: center;
+  vertical-align: middle;
+  color: #337fd5;
+  }
+
 .server-list,
 .channel-list {
   display: flex;
