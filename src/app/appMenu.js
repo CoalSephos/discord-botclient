@@ -10,7 +10,8 @@ module.exports = function (app) {
     submenu: [
       { label: "About Application", selector: "orderFrontStandardAboutPanel:" },
       { type: "separator" },
-      { label: "Quit", accelerator: "Command+Q", click: function() { app.quit(); }}
+     { label: "Quit", accelerator: process.device == 'darwin' ? "Command+Q" :
+         "Ctrl+Q", click: function() { app.quit(); }}
     ]}, {
       label: "View",
       submenu: [
